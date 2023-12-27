@@ -28,6 +28,7 @@ runs:
     - name: Ottimizza immagini
       shell: bash
       run: |
+        rm -r optimized
         mkdir optimized
         for FILE in *.png; do 
           cwebp "$FILE" -o optimized/"${FILE%.*}".webp;
