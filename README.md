@@ -1,2 +1,3 @@
-# optimize-images
-GitHub Action per ottimizzare le immagini PNG e SVG usando cwebp e svgo
+Questa GitHub Action ottimizza automaticamente ad ogni commit le immagini PNG e SVG presenti in una repo usando [cwebp](https://developers.google.com/speed/webp/docs/cwebp?hl=it) e [svgo](https://github.com/svg/svgo).
+
+È stata creata per Zappr, nello specifico per ottimizzare i loghi nella repo [ZapprTV/logos](https://github.com/ZapprTV/logos), quindi non contiene opzioni per personalizzare la sua configurazione di default, che prende tutte le immagini nel root di una repo come input per poi restituire le versioni ottimizzate nella cartella `optimized/`. Se hai bisogno di una configurazione diversa, forka questa repo e modifica il file [action.yml](https://github.com/ZapprTV/optimize-images/blob/main/action.yml) per adattarlo alle tue esigenze.
