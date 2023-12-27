@@ -1,0 +1,43 @@
+name: Ottimizza immagini
+author: FrancescoRosi
+inputs:
+  libwebp-version:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Installa Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20.x"
+
+    - name: Installa cwebp e svgo
+      shell: bash
+      run: |
+        cd $HOME
+        wget https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-${{ inputs.libwebp-version }}-linux-x86-64.tar.gz -O libwebp.tar.gz
+        tar -xf libwebp.tar.gz -C libwebp --strip-components=1
+        echo "$HOME/libwebp/bin" >> $GITHUB_PATH
+        sudo npm install svgo -g
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Ottimizza immagini
+      shell: bash
+      run: |
+        mkdir optimized
+        for FILE in *.png; do 
+          cwebp "$FILE" -o optimized/"${FILE%.*}".webp;
+        done
+
+        for FILE in *.svg; do
+          svgo "$FILE" -o optimized/
+        done
+
+    - name: Commit
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Ottimizzazione immagini"
+        file_pattern: "optimized/"
