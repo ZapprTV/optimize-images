@@ -3,6 +3,9 @@ author: FrancescoRosi
 inputs:
   libwebp-version:
     required: true
+  directory:
+    required: true
+    default: "."
 
 runs:
   using: "composite"
@@ -28,6 +31,7 @@ runs:
     - name: Ottimizza immagini
       shell: bash
       run: |
+        cd ${{ inputs.directory }}
         rm -r optimized
         mkdir optimized
         for FILE in *.png; do 
