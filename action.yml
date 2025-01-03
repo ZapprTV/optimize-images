@@ -46,4 +46,4 @@ runs:
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: "Ottimizzazione immagini"
-        file_pattern: "optimized/"
+        file_pattern: "${{ inputs.directory }}/optimized/"
