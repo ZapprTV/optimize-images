@@ -35,7 +35,7 @@ runs:
         rm -r optimized
         mkdir optimized
         for FILE in *.png; do 
-          cwebp "$FILE" -o optimized/"${FILE%.*}".webp;
+          cwebp "$FILE" -resize 300 0 -o optimized/"${FILE%.*}".webp;
         done
 
         for FILE in *.svg; do
