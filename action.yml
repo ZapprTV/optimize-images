@@ -32,7 +32,7 @@ runs:
       shell: bash
       run: |
         cd ${{ inputs.directory }}
-        rm -r optimized
+        rm -rf optimized
         mkdir optimized
         for FILE in *.png; do 
           cwebp "$FILE" -resize 300 0 -o optimized/"${FILE%.*}".webp;
