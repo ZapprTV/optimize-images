@@ -34,6 +34,7 @@ runs:
         cd ${{ inputs.directory }}
         rm -rf optimized
         mkdir optimized
+        touch optimized/.gitkeep
         for FILE in *.png; do 
           cwebp "$FILE" -resize 300 0 -o optimized/"${FILE%.*}".webp;
         done
