@@ -34,7 +34,7 @@ runs:
         touch optimized/.gitkeep
         rm -rf .tooptimize
         mkdir .tooptimize
-        cp $(git ls-files --modified) ./.tooptimize
+        cp $(git ls-files --modified ':(glob)*') ./.tooptimize
         cd .tooptimize
         for FILE in *.png; do 
           cwebp "$FILE" -resize 300 0 -o ../optimized/"${FILE%.*}".webp;
