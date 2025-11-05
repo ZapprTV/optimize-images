@@ -32,16 +32,12 @@ runs:
         rm -rf optimized
         mkdir optimized
         touch optimized/.gitkeep
-        rm -rf .tooptimize
-        mkdir .tooptimize
-        cp $(git log -1 --name-only --pretty='' | grep -o "^${{ inputs.directory }}.*" | sed 's!${{ inputs.directory }}/!!g') ./.tooptimize
-        cd .tooptimize
         for FILE in *.png; do 
-          cwebp "$FILE" -resize 300 0 -o ../optimized/"${FILE%.*}".webp;
+          cwebp "$FILE" -resize 300 0 -o optimized/"${FILE%.*}".webp;
         done
 
         for FILE in *.svg; do
-          svgo "$FILE" -o ../optimized/
+          svgo "$FILE" -o optimized/
         done
 
     - name: Commit
